@@ -1,5 +1,6 @@
-use stdstruct::stack::Stack;
-use utils;
+mod stdstruct;
+mod utils;
+
 
 fn main() {
     // test for SourceLinkList 
@@ -17,7 +18,7 @@ fn main() {
     
 
     // test for stack 
-    let mut stack: Stack<i32> = Stack::new();
+    let mut stack: stdstruct::stack::Stack<i32> = stdstruct::stack::Stack::new();
     stack.push(1);
     stack.push(2);
     stack.push(3);
