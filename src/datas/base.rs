@@ -1,8 +1,7 @@
 #![allow(dead_code)]
-pub mod stack;
 
 pub struct SourceLinkList<T: std::default::Default + std::fmt::Debug> {
-    val: T,
+    pub val: T,
     next: Option<Box<SourceLinkList<T>>>,
 }
 

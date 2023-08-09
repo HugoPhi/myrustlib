@@ -1,5 +1,5 @@
 #![allow(dead_code)]
-use super::SourceLinkList;
+use super::base::SourceLinkList;
 
 
 pub struct Stack<T: std::default::Default + std::fmt::Debug> {
@@ -14,7 +14,7 @@ impl<T: std::default::Default + std::fmt::Debug> Stack<T> {
             arr: SourceLinkList::new(),
         }
     }
-
+    
     pub fn empty(&self) -> bool {
         if self.size == 0 {
             return true;
@@ -22,7 +22,7 @@ impl<T: std::default::Default + std::fmt::Debug> Stack<T> {
             return false;
         }
     }
-
+    
     pub fn push(&mut self, value: T) {
         if self.empty() {
             self.size = 1;
@@ -32,7 +32,7 @@ impl<T: std::default::Default + std::fmt::Debug> Stack<T> {
             self.size += 1;
         }
     }
-
+    
     pub fn pop(&mut self) -> bool {
         if self.empty() {
             println!("stack is empty!!❌");
@@ -42,7 +42,7 @@ impl<T: std::default::Default + std::fmt::Debug> Stack<T> {
             self.arr.pop()
         }
     }
-
+    
     pub fn top(&mut self) -> Option<&mut T> {
         if self.empty() {
             None
