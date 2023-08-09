@@ -35,7 +35,7 @@ impl<T: std::default::Default + std::fmt::Debug> SourceLinkList<T> {
             }
         }
     }
-
+    
     fn __assist_show_format__(&self) {
         if self.next.is_some() {
             print!("{:?}, ", self.val);
@@ -44,12 +44,12 @@ impl<T: std::default::Default + std::fmt::Debug> SourceLinkList<T> {
             print!("{:?}]", self.val);
         }
     }
-
+    
     pub fn __show_format__(&self) {
         print!("[");
         self.__assist_show_format__();
     }
-
+    
     pub fn end_value(&mut self) -> Option<&mut T> {
         if self.next.is_none() {
             Some(&mut self.val)
