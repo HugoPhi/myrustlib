@@ -1,20 +1,20 @@
 #![allow(dead_code)]
+
 use super::base::SourceLinkList;
 
-
-pub struct Stack<T: std::default::Default + std::fmt::Debug> {
+pub struct Queue<T: std::default::Default + std::fmt::Debug + std::clone::Clone> {
     size: usize,
     arr: SourceLinkList<T>,
 }
 
-impl<T: std::default::Default + std::fmt::Debug> Stack<T> {
+impl<T: std::default::Default + std::fmt::Debug + std::clone::Clone> Queue<T> {
     pub fn new() -> Self {
-        Stack {
+        Queue {
             size: 0,
-            arr: SourceLinkList::new(),
+            arr: SourceLinkList::new(Default::default()),
         }
     }
-    
+
     pub fn empty(&self) -> bool {
         if self.size == 0 {
             return true;
@@ -22,7 +22,7 @@ impl<T: std::default::Default + std::fmt::Debug> Stack<T> {
             return false;
         }
     }
-    
+
     pub fn push(&mut self, value: T) {
         if self.empty() {
             self.size = 1;
@@ -32,28 +32,30 @@ impl<T: std::default::Default + std::fmt::Debug> Stack<T> {
             self.size += 1;
         }
     }
-    
+
     pub fn pop(&mut self) -> bool {
         if self.empty() {
-            println!("stack is empty!!❌");
             return false;
         } else {
             self.size -= 1;
-            self.arr.pop()
+            self.arr.erase(0)
         }
     }
-    
-    pub fn top(&mut self) -> Option<&mut T> {
+
+    pub fn front(&mut self) -> Option<&mut T> {
         if self.empty() {
             None
         } else {
-            self.arr.end_value()
+            Option::Some(self.arr.at(0))
         }
+    }
+
+    pub fn len(&self) -> usize {
+        self.size
     }
 }
 
-
-impl<T: std::default::Default + std::fmt::Debug> std::fmt::Debug for Stack<T> {
+impl<T: std::default::Default + std::fmt::Debug + std::clone::Clone> std::fmt::Debug for Queue<T> {
     fn fmt(&self, _f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         if self.empty() {
             print!("[]");
@@ -64,5 +66,6 @@ impl<T: std::default::Default + std::fmt::Debug> std::fmt::Debug for Stack<T> {
         }
     }
 }
+
 
 
